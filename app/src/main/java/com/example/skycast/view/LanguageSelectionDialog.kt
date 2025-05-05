@@ -1,6 +1,8 @@
 package com.example.skycast.view
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -10,7 +12,6 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.example.skycast.R
-import com.example.skycast.utils.LanguageUtils
 import com.example.skycast.viewmodel.MainViewModel
 
 @Composable
@@ -24,7 +25,14 @@ fun LanguageSelectionDialog(
     val languages = listOf(
         "en" to context.getString(R.string.english),
         "hi" to context.getString(R.string.hindi),
-        "pa" to context.getString(R.string.punjabi)
+        "pa" to context.getString(R.string.punjabi),
+        "mr" to context.getString(R.string.marathi),
+        "gu" to context.getString(R.string.gujarati),
+        "bn" to context.getString(R.string.bengali),
+        "ta" to context.getString(R.string.tamil),
+        "te" to context.getString(R.string.telugu),
+        "ml" to context.getString(R.string.malayalam),
+        "kn" to context.getString(R.string.kannada)
     )
 
     // Button to open the dialog
@@ -52,6 +60,7 @@ fun LanguageSelectionDialog(
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .verticalScroll(rememberScrollState())
                         .semantics { contentDescription = context.getString(R.string.language_selection_dialog) }
                 ) {
                     languages.forEach { (code, name) ->
